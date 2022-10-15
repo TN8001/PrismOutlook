@@ -1,0 +1,2 @@
+# PrismOutlook
+Remove Infragistics dependency.
