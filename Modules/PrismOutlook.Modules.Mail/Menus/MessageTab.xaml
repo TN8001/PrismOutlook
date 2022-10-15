@@ -1,57 +1,105 @@
-﻿<ig:RibbonTabItem x:Class="PrismOutlook.Modules.Mail.Menus.MessageTab"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:ig="http://schemas.infragistics.com/xaml/wpf"
-             xmlns:local="clr-namespace:PrismOutlook.Modules.Mail.Menus"
-                  Header="Message Tab">
+﻿<Fluent:RibbonTabItem
+  x:Class="PrismOutlook.Modules.Mail.Menus.MessageTab"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:Fluent="urn:fluent-ribbon"
+  Header="Message Tab">
 
-    <ig:RibbonGroup Caption="Clipboard">
-        <ig:ButtonTool Caption="Paste"
-                          Command="ApplicationCommands.Paste"
-                          LargeImage="/PrismOutlook.Modules.Mail;component/Images/Paste32.png" 
-                          ig:RibbonGroup.MinimumSize="ImageAndTextLarge" ig:RibbonGroup.MaximumSize="ImageAndTextLarge"/>
-        <ig:ButtonTool Caption="Cut" 
-                          Command="ApplicationCommands.Cut"
-                          SmallImage="/PrismOutlook.Modules.Mail;component/Images/Cut16.png" 
-                          ig:RibbonGroup.MaximumSize="ImageOnly"/>
-        <ig:ButtonTool Caption="Copy" 
-                          Command="ApplicationCommands.Copy"
-                          SmallImage="/PrismOutlook.Modules.Mail;component/Images/Copy16.png" ig:RibbonGroup.MaximumSize="ImageOnly"/>
-    </ig:RibbonGroup>
+  <Fluent:RibbonGroupBox Header="Clipboard">
+    <Fluent:Button
+      Command="ApplicationCommands.Paste"
+      Header="Paste"
+      LargeIcon="/PrismOutlook.Modules.Mail;component/Images/Paste32.png" />
+    <Fluent:Button
+      Command="ApplicationCommands.Cut"
+      Header="Cut"
+      Icon="/PrismOutlook.Modules.Mail;component/Images/Cut16.png"
+      Size="Small" />
+    <Fluent:Button
+      Command="ApplicationCommands.Copy"
+      Header="Copy"
+      Icon="/PrismOutlook.Modules.Mail;component/Images/Copy16.png"
+      Size="Small" />
+  </Fluent:RibbonGroupBox>
 
-    <ig:RibbonGroup Caption="Font">
-        <ig:ToolHorizontalWrapPanel>
-            <ig:ButtonGroup>
-                <ig:ComboEditorTool x:Name="_fontNames" SelectedItemChanged="FontNames_SelectedItemChanged" IsEditable="True" />
-                <ig:ComboEditorTool x:Name="_fontSizes" SelectedItemChanged="FontSizes_SelectedItemChanged" EditAreaWidth="45" IsEditable="True" />
-            </ig:ButtonGroup>
-            <ig:ButtonGroup>
-                <ig:ToggleButtonTool x:Name="_boldButton" Command="EditingCommands.ToggleBold"
-                                        SmallImage="/PrismOutlook.Modules.Mail;component/Images/Bold16.png"/>
-                <ig:ToggleButtonTool x:Name="_italicButton" Command="EditingCommands.ToggleItalic" 
-                                        SmallImage="/PrismOutlook.Modules.Mail;component/Images/Italic16.png"/>
-                <ig:ToggleButtonTool x:Name="_underlineButton" Command="EditingCommands.ToggleUnderline"
-                                        SmallImage="/PrismOutlook.Modules.Mail;component/Images/Underline16.png"/>
-            </ig:ButtonGroup>
-        </ig:ToolHorizontalWrapPanel>
-    </ig:RibbonGroup>
-    <ig:RibbonGroup Caption="Paragraph">
-        <ig:ToolHorizontalWrapPanel>
-            <ig:ButtonGroup>
-                <ig:RadioButtonTool x:Name="_alignLeft" Command="EditingCommands.AlignLeft"
-                                       SmallImage="/PrismOutlook.Modules.Mail;component/Images/LeftAlign16.png" />
-                <ig:RadioButtonTool x:Name="_alignCenter" Command="EditingCommands.AlignCenter"
-                                       SmallImage="/PrismOutlook.Modules.Mail;component/Images/CenterAlign16.png" />
-                <ig:RadioButtonTool x:Name="_alignRight" Command="EditingCommands.AlignRight"
-                                       SmallImage="/PrismOutlook.Modules.Mail;component/Images/RightAlign16.png"/>
-                <ig:RadioButtonTool x:Name="_alignJustify" Command="EditingCommands.AlignJustify"
-                                       SmallImage="/PrismOutlook.Modules.Mail;component/Images/JustifyAlign16.png"/>
-            </ig:ButtonGroup>
-            <ig:ButtonGroup >
-                <ig:ToggleButtonTool x:Name="_bulletsButton" Click="BulletsButton_Click" Tag="Bullet" SmallImage="/PrismOutlook.Modules.Mail;component/Images/Bullets16.png" />
-                <ig:ToggleButtonTool x:Name="_numbersButton" Click="NumbersButton_Click" Tag="Decimal" SmallImage="/PrismOutlook.Modules.Mail;component/Images/Numbering16.png" />
-            </ig:ButtonGroup>
-        </ig:ToolHorizontalWrapPanel>
-    </ig:RibbonGroup>
+  <Fluent:RibbonGroupBox Header="Font">
+    <StackPanel>
+      <StackPanel Orientation="Horizontal">
+        <Fluent:ComboBox
+          x:Name="_fontNames"
+          Width="180"
+          IsEditable="True"
+          SelectionChanged="FontNames_SelectedItemChanged" />
+        <Fluent:ComboBox
+          x:Name="_fontSizes"
+          Width="60"
+          IsEditable="True"
+          SelectionChanged="FontSizes_SelectedItemChanged" />
+      </StackPanel>
 
-</ig:RibbonTabItem>
+      <StackPanel Orientation="Horizontal">
+        <Fluent:ToggleButton
+          x:Name="_boldButton"
+          Command="EditingCommands.ToggleBold"
+          Icon="/PrismOutlook.Modules.Mail;component/Images/Bold16.png"
+          Size="Small" />
+        <Fluent:ToggleButton
+          x:Name="_italicButton"
+          Command="EditingCommands.ToggleItalic"
+          Icon="/PrismOutlook.Modules.Mail;component/Images/Italic16.png"
+          Size="Small" />
+        <Fluent:ToggleButton
+          x:Name="_underlineButton"
+          Command="EditingCommands.ToggleUnderline"
+          Icon="/PrismOutlook.Modules.Mail;component/Images/Underline16.png"
+          Size="Small" />
+      </StackPanel>
+    </StackPanel>
+  </Fluent:RibbonGroupBox>
+
+  <Fluent:RibbonGroupBox Header="Paragraph">
+    <StackPanel>
+      <StackPanel Orientation="Horizontal">
+        <Fluent:ToggleButton
+          x:Name="_alignLeft"
+          Command="EditingCommands.AlignLeft"
+          GroupName="Align"
+          Icon="/PrismOutlook.Modules.Mail;component/Images/LeftAlign16.png"
+          Size="Small" />
+        <Fluent:ToggleButton
+          x:Name="_alignCenter"
+          Command="EditingCommands.AlignCenter"
+          GroupName="Align"
+          Icon="/PrismOutlook.Modules.Mail;component/Images/CenterAlign16.png"
+          Size="Small" />
+        <Fluent:ToggleButton
+          x:Name="_alignRight"
+          Command="EditingCommands.AlignRight"
+          GroupName="Align"
+          Icon="/PrismOutlook.Modules.Mail;component/Images/RightAlign16.png"
+          Size="Small" />
+        <Fluent:ToggleButton
+          x:Name="_alignJustify"
+          Command="EditingCommands.AlignJustify"
+          GroupName="Align"
+          Icon="/PrismOutlook.Modules.Mail;component/Images/JustifyAlign16.png"
+          Size="Small" />
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+        <Fluent:ToggleButton
+          x:Name="_bulletsButton"
+          Command="EditingCommands.ToggleBullets"
+          GroupName="Bullet"
+          Icon="/PrismOutlook.Modules.Mail;component/Images/Bullets16.png"
+          Size="Small" />
+        <Fluent:ToggleButton
+          x:Name="_numbersButton"
+          Command="EditingCommands.ToggleNumbering"
+          GroupName="Bullet"
+          Icon="/PrismOutlook.Modules.Mail;component/Images/Numbering16.png"
+          Size="Small" />
+      </StackPanel>
+    </StackPanel>
+  </Fluent:RibbonGroupBox>
+</Fluent:RibbonTabItem>

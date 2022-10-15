@@ -1,108 +1,90 @@
-﻿using PrismOutlook.Business;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using PrismOutlook.Business;
 using PrismOutlook.Services.Data;
 using PrismOutlook.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 
-namespace PrismOutlook.Services
+namespace PrismOutlook.Services;
+
+public class MailService : IMailService
 {
-    public class MailService : IMailService
+    private static readonly List<MailMessage> InboxItems = new()
     {
-        static List<MailMessage> InboxItems = new List<MailMessage>()
+        new()
         {
-            new MailMessage()
-            {
-                Id = 1,
-                From = "jerrynixon@microsoft.com",
-                To = new ObservableCollection<string>(){ "jane@doe.com", "john@doe.com" },
-                Subject = "This is a test email",
-                Body = Resources.DavidSmit_SampleCoverLetterEmail,
-                DateSent = DateTime.Now
-            },
-            new MailMessage()
-            {
-                Id = 2,
-                From = "jerrynixon@microsoft.com",
-                To = new ObservableCollection<string>(){ "jane@doe.com", "john@doe.com" },
-                Subject = "This is a test email 2",
-                Body = Resources.Barbara_Bailey_RE_GraphicDesignerCoverLetter,
-                DateSent = DateTime.Now.AddDays(-1)
-            },
-            new MailMessage()
-            {
-                Id = 3,
-                From = "jerrynixon@microsoft.com",
-                To = new ObservableCollection<string>(){ "jane@doe.com", "john@doe.com" },
-                Subject = "This is a test email 3",
-                Body = Resources.MargaretJones_RE_GraphicDesignerCoverLetter,
-                DateSent = DateTime.Now.AddDays(-5)
-            },
-        };
-
-        static List<MailMessage> SentItems = new List<MailMessage>();
-
-        static List<MailMessage> DeletedItems = new List<MailMessage>();
-
-        public void DeleteMessage(int id)
+            Id = 1,
+            From = "jerrynixon@microsoft.com",
+            To = new(){ "jane@doe.com", "john@doe.com" },
+            Subject = "This is a test email",
+            Body = Resources.DavidSmit_SampleCoverLetterEmail,
+            DateSent = DateTime.Now,
+        },
+        new()
         {
-            var messages = new List<MailMessage>();
+            Id = 2,
+            From = "jerrynixon@microsoft.com",
+            To = new(){ "jane@doe.com", "john@doe.com" },
+            Subject = "This is a test email 2",
+            Body = Resources.Barbara_Bailey_RE_GraphicDesignerCoverLetter,
+            DateSent = DateTime.Now.AddDays(-1),
+        },
+        new()
+        {
+            Id = 3,
+            From = "jerrynixon@microsoft.com",
+            To = new(){ "jane@doe.com", "john@doe.com" },
+            Subject = "This is a test email 3",
+            Body = Resources.MargaretJones_RE_GraphicDesignerCoverLetter,
+            DateSent = DateTime.Now.AddDays(-5),
+        },
+    };
+    private static readonly List<MailMessage> SentItems = new();
+    private static readonly List<MailMessage> DeletedItems = new();
 
-            var message = DeletedItems.FirstOrDefault(m => m.Id == id);
-            if (message != null)
-            {
-                DeletedItems.Remove(message);
-                return;
-            }
+    public void DeleteMessage(int id)
+    {
+        var messages = new List<MailMessage>();
 
-            message = InboxItems.FirstOrDefault(m => m.Id == id);
-            if (message != null)
-            {
-                InboxItems.Remove(message);
-            }
-            else
-            {
-                message = SentItems.FirstOrDefault(m => m.Id == id);
-                if (message != null)
-                    SentItems.Remove(message);
-            }
-
-            if (message != null)
-            {
-                DeletedItems.Add(message);
-            }
+        var message = DeletedItems.FirstOrDefault(m => m.Id == id);
+        if (message != null)
+        {
+            _ = DeletedItems.Remove(message);
+            return;
         }
 
-        public IList<MailMessage> GetDeletedItems()
+        message = InboxItems.FirstOrDefault(m => m.Id == id);
+        if (message != null)
         {
-            return DeletedItems;
+            _ = InboxItems.Remove(message);
+        }
+        else
+        {
+            message = SentItems.FirstOrDefault(m => m.Id == id);
+            if (message != null) _ = SentItems.Remove(message);
         }
 
-        public IList<MailMessage> GetInboxItems()
-        {
-            return InboxItems;
-        }
+        if (message != null) DeletedItems.Add(message);
+    }
 
-        public MailMessage GetMessage(int id)
-        {
-            var messages = new List<MailMessage>();
-            messages.AddRange(InboxItems);
-            messages.AddRange(SentItems);
-            messages.AddRange(DeletedItems);
-            return messages.FirstOrDefault(m => m.Id == id);
-        }
+    public IList<MailMessage> GetDeletedItems() => DeletedItems;
 
-        public IList<MailMessage> GetSentItems()
-        {
-            return SentItems;
-        }
+    public IList<MailMessage> GetInboxItems() => InboxItems;
 
-        public void SendMessage(MailMessage message)
-        {
-            message.DateSent = DateTime.Now;
-            SentItems.Add(message);
-        }
+    public MailMessage GetMessage(int id)
+    {
+        var messages = new List<MailMessage>();
+        messages.AddRange(InboxItems);
+        messages.AddRange(SentItems);
+        messages.AddRange(DeletedItems);
+        return messages.FirstOrDefault(m => m.Id == id);
+    }
+
+    public IList<MailMessage> GetSentItems() => SentItems;
+
+    public void SendMessage(MailMessage message)
+    {
+        message.DateSent = DateTime.Now;
+        SentItems.Add(message);
     }
 }

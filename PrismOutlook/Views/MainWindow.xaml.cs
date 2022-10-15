@@ -1,32 +1,22 @@
-﻿using Infragistics.Themes;
-using Infragistics.Windows.OutlookBar;
-using Infragistics.Windows.Ribbon;
-using Prism.Regions;
+﻿using System.Windows;
+using System.Windows.Controls;
 using PrismOutlook.Core;
-using System.Windows;
 
-namespace PrismOutlook.Views
+namespace PrismOutlook.Views;
+
+public partial class MainWindow // : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : XamRibbonWindow
+    private readonly IApplicationCommands _applicationCommands;
+
+    public MainWindow(IApplicationCommands applicationCommands)
     {
-        private readonly IApplicationCommands _applicationCommands;
+        InitializeComponent();
+        _applicationCommands = applicationCommands;
+    }
 
-        public MainWindow(IApplicationCommands applicationCommands)
-        {
-            InitializeComponent();
-            _applicationCommands = applicationCommands;
-        }
-
-        private void XamOutlookBar_SelectedGroupChanged(object sender, RoutedEventArgs e)
-        {
-            var group = ((XamOutlookBar)sender).SelectedGroup as IOutlookBarGroup;
-            if (group != null)
-            {
-                _applicationCommands.NavigateCommand.Execute(group.DefaultNavigationPath);
-            }
-        }
+    private void XamOutlookBar_SelectedGroupChanged(object sender, RoutedEventArgs e)
+    {
+        if (((TabControl)sender).SelectedItem is IOutlookBarGroup group)
+            _applicationCommands.NavigateCommand.Execute(group.DefaultNavigationPath);
     }
 }

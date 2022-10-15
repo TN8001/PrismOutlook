@@ -1,35 +1,45 @@
-﻿<ig:RibbonTabItem x:Class="PrismOutlook.Modules.Mail.Menus.HomeTab"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:PrismOutlook.Modules.Mail"
-             xmlns:ig="http://schemas.infragistics.com/xaml/wpf"
-             Header="Mail">
+﻿<Fluent:RibbonTabItem
+  x:Class="PrismOutlook.Modules.Mail.Menus.HomeTab"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:Fluent="urn:fluent-ribbon"
+  Header="Mail">
 
-    <ig:RibbonGroup Caption="New">
-        <ig:ButtonTool Caption="New Email" 
-                          Command="{Binding NewMessageCommand}" CommandParameter="New"
-                          LargeImage="/PrismOutlook.Modules.Mail;component/Images/NewMailMessage32.png" 
-                          SmallImage="/PrismOutlook.Modules.Mail;component/Images/NewMailMessage16.png" ig:RibbonGroup.MaximumSize="ImageAndTextLarge"/>
-    </ig:RibbonGroup>
-    <ig:RibbonGroup Caption="Delete">
-        <ig:ButtonTool Caption="Delete" 
-                          Command="{Binding DeleteMessageCommand}" 
-                          LargeImage="/PrismOutlook.Modules.Mail;component/Images/Delete32.png" 
-                          SmallImage="/PrismOutlook.Modules.Mail;component/Images/Delete16.png" ig:RibbonGroup.MaximumSize="ImageAndTextLarge"/>
-    </ig:RibbonGroup>
-    <ig:RibbonGroup Caption="Respond">
-        <ig:ButtonTool Caption="Reply" 
-                          Command="{Binding MessageCommand}" CommandParameter="Reply"
-                          LargeImage="/PrismOutlook.Modules.Mail;component/Images/Reply32.png" 
-                          SmallImage="/PrismOutlook.Modules.Mail;component/Images/Reply16.png" ig:RibbonGroup.MaximumSize="ImageAndTextLarge" />
-        <ig:ButtonTool Caption="ReplyAll" 
-                          Command="{Binding MessageCommand}" CommandParameter="ReplyAll"
-                          LargeImage="/PrismOutlook.Modules.Mail;component/Images/ReplyAll32.png" 
-                          SmallImage="/PrismOutlook.Modules.Mail;component/Images/ReplyAll16.png" ig:RibbonGroup.MaximumSize="ImageAndTextLarge" />
-        <ig:ButtonTool Caption="Forward" 
-                          Command="{Binding MessageCommand}" CommandParameter="Forward"
-                          LargeImage="/PrismOutlook.Modules.Mail;component/Images/Forward32.png" 
-                          SmallImage="/PrismOutlook.Modules.Mail;component/Images/Forward16.png" ig:RibbonGroup.MaximumSize="ImageAndTextLarge"/>
-    </ig:RibbonGroup>
+  <Fluent:RibbonGroupBox Header="New">
+    <Fluent:Button
+      Command="{Binding NewMessageCommand}"
+      CommandParameter="New"
+      Header="New&#xA0;Email"
+      Icon="/PrismOutlook.Modules.Mail;component/Images/NewMailMessage16.png"
+      LargeIcon="/PrismOutlook.Modules.Mail;component/Images/NewMailMessage32.png" />
+  </Fluent:RibbonGroupBox>
 
-</ig:RibbonTabItem>
+  <Fluent:RibbonGroupBox Header="Delete">
+    <Fluent:Button
+      Command="{Binding DeleteMessageCommand}"
+      Header="Delete"
+      Icon="/PrismOutlook.Modules.Mail;component/Images/Delete16.png"
+      LargeIcon="/PrismOutlook.Modules.Mail;component/Images/Delete32.png" />
+  </Fluent:RibbonGroupBox>
+
+  <Fluent:RibbonGroupBox Header="Respond">
+    <Fluent:Button
+      Command="{Binding MessageCommand}"
+      CommandParameter="Reply"
+      Header="Reply"
+      Icon="/PrismOutlook.Modules.Mail;component/Images/Reply16.png"
+      LargeIcon="/PrismOutlook.Modules.Mail;component/Images/Reply32.png" />
+    <Fluent:Button
+      Command="{Binding MessageCommand}"
+      CommandParameter="ReplyAll"
+      Header="ReplyAll"
+      Icon="/PrismOutlook.Modules.Mail;component/Images/ReplyAll16.png"
+      LargeIcon="/PrismOutlook.Modules.Mail;component/Images/ReplyAll32.png" />
+    <Fluent:Button
+      Command="{Binding MessageCommand}"
+      CommandParameter="Forward"
+      Header="Forward"
+      Icon="/PrismOutlook.Modules.Mail;component/Images/Forward16.png"
+      LargeIcon="/PrismOutlook.Modules.Mail;component/Images/Forward32.png" />
+  </Fluent:RibbonGroupBox>
+</Fluent:RibbonTabItem>

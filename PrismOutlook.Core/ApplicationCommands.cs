@@ -1,14 +1,13 @@
 ﻿using Prism.Commands;
 
-namespace PrismOutlook.Core
-{
-    public interface IApplicationCommands
-    {
-        CompositeCommand NavigateCommand { get; }
-    }
+namespace PrismOutlook.Core;
 
-    public class ApplicationCommands : IApplicationCommands
-    {
-        public CompositeCommand NavigateCommand { get; } = new CompositeCommand();
-    }
+public interface IApplicationCommands
+{
+    CompositeCommand NavigateCommand { get; }
+}
+
+public class ApplicationCommands : IApplicationCommands
+{
+    public CompositeCommand NavigateCommand { get; } = new();
 }

@@ -1,19 +1,10 @@
 ﻿using Prism.Services.Dialogs;
-using System.Windows;
 
-namespace PrismOutlook.Core.Dialogs
+namespace PrismOutlook.Core.Dialogs;
+
+public partial class RibbonDialogWindow : IDialogWindow
 {
-    /// <summary>
-    /// Interaction logic for RibbonDialogWindow.xaml
-    /// </summary>
-    public partial class RibbonDialogWindow : IDialogWindow
-    {
-        public RibbonDialogWindow()
-        {
-            InitializeComponent();
-        }
+    public IDialogResult Result { get; set; }
 
-        public IDialogResult Result { get; set; }
-    }
-
+    public RibbonDialogWindow() => InitializeComponent();
 }

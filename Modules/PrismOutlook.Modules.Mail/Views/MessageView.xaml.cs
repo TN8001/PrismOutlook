@@ -1,25 +1,14 @@
-﻿using Infragistics.Controls.Editors;
+﻿using System;
+using System.Windows.Controls;
 using PrismOutlook.Core;
 using PrismOutlook.Modules.Mail.Menus;
-using System.Windows.Controls;
 
-namespace PrismOutlook.Modules.Mail.Views
+namespace PrismOutlook.Modules.Mail.Views;
+
+[DependentView(RegionNames.RibbonRegion, typeof(MessageTab))]
+public partial class MessageView : UserControl, ISupportDataContext, ISupportRichText
 {
-    /// <summary>
-    /// Interaction logic for MessageView
-    /// </summary>
-    [DependentView(RegionNames.RibbonRegion, typeof(MessageTab))] 
-    public partial class MessageView : UserControl, ISupportDataContext, ISupportRichText
-    {
-        public MessageView()
-        {
-            InitializeComponent();
-        }
+    public RichTextBox RichTextEditor { get => _rte; set => throw new NotImplementedException(); }
 
-        public XamRichTextEditor RichTextEditor
-        {
-            get => _rte;
-            set => throw new System.NotImplementedException();
-        }
-    }
+    public MessageView() => InitializeComponent();
 }

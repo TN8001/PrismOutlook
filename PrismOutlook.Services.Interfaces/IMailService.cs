@@ -1,16 +1,15 @@
-﻿using PrismOutlook.Business;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PrismOutlook.Business;
 
-namespace PrismOutlook.Services.Interfaces
+namespace PrismOutlook.Services.Interfaces;
+
+public interface IMailService
 {
-    public interface IMailService
-    {
-        IList<MailMessage> GetInboxItems();
-        IList<MailMessage> GetSentItems();
-        IList<MailMessage> GetDeletedItems();
+    IList<MailMessage> GetInboxItems();
+    IList<MailMessage> GetSentItems();
+    IList<MailMessage> GetDeletedItems();
 
-        MailMessage GetMessage(int id);
-        void DeleteMessage(int id);
-        void SendMessage(MailMessage message);
-    }
+    MailMessage GetMessage(int id);
+    void DeleteMessage(int id);
+    void SendMessage(MailMessage message);
 }

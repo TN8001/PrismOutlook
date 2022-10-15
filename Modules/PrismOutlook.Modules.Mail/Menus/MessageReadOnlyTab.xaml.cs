@@ -1,15 +1,8 @@
 ﻿using PrismOutlook.Core;
 
-namespace PrismOutlook.Modules.Mail.Menus
+namespace PrismOutlook.Modules.Mail.Menus;
+
+public partial class MessageReadOnlyTab : Fluent.RibbonTabItem, ISupportDataContext
 {
-    /// <summary>
-    /// Interaction logic for MassageReadOnlyTab.xaml
-    /// </summary>
-    public partial class MessageReadOnlyTab : ISupportDataContext
-    {
-        public MessageReadOnlyTab()
-        {
-            InitializeComponent();
-        }
-    }
+    public MessageReadOnlyTab() => InitializeComponent();
 }

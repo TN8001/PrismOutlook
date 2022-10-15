@@ -1,38 +1,30 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using System;
+using Prism.Commands;
 using Prism.Regions;
 using PrismOutlook.Core;
-using System;
 
-namespace PrismOutlook.ViewModels
+namespace PrismOutlook.ViewModels;
+
+public class MainWindowViewModel : ViewModelBase
 {
-    public class MainWindowViewModel : ViewModelBase
+    public string Title { get => _title; set => SetProperty(ref _title, value); }
+    private string _title = "Prism Application";
+
+    public DelegateCommand<string> NavigateCommand => _navigateCommand ??= new(ExecuteNavigateCommand);
+    private DelegateCommand<string> _navigateCommand;
+
+    private readonly IRegionManager _regionManager;
+
+    public MainWindowViewModel(IRegionManager regionManager, IApplicationCommands applicationCommands)
     {
-        private string _title = "Prism Application";
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        _regionManager = regionManager;
+        applicationCommands.NavigateCommand.RegisterCommand(NavigateCommand);
+    }
 
-        private DelegateCommand<string> _navigateCommand;
-        private readonly IRegionManager _regionManager;
+    private void ExecuteNavigateCommand(string navigationPath)
+    {
+        if (string.IsNullOrEmpty(navigationPath)) throw new ArgumentNullException(nameof(navigationPath));
 
-        public DelegateCommand<string> NavigateCommand =>
-            _navigateCommand ?? (_navigateCommand = new DelegateCommand<string>(ExecuteNavigateCommand));
-
-        public MainWindowViewModel(IRegionManager regionManager, IApplicationCommands applicationCommands)
-        {
-            _regionManager = regionManager;
-            applicationCommands.NavigateCommand.RegisterCommand(NavigateCommand);
-        }
-
-        void ExecuteNavigateCommand(string navigationPath)
-        {
-            if (string.IsNullOrEmpty(navigationPath))
-                throw new ArgumentNullException();
-
-            _regionManager.RequestNavigate(RegionNames.ContentRegion, navigationPath);
-        }
+        _regionManager.RequestNavigate(RegionNames.ContentRegion, navigationPath);
     }
 }

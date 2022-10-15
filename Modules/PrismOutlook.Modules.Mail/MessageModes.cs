@@ -1,12 +1,11 @@
-﻿namespace PrismOutlook.Modules.Mail
+﻿namespace PrismOutlook.Modules.Mail;
+
+public enum MessageMode
 {
-    public enum MessageMode
-    {
-        Delete,
-        New,
-        Reply,
-        ReplyAll,
-        Forward,
-        Read
-    }
+    Delete,
+    New,
+    Reply,
+    ReplyAll,
+    Forward,
+    Read,
 }

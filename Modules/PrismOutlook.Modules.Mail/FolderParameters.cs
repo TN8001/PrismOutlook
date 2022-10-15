@@ -1,11 +1,10 @@
-﻿namespace PrismOutlook.Modules.Mail
-{
-    public class FolderParameters
-    {
-        public const string FolderKey = "Folder";
+﻿namespace PrismOutlook.Modules.Mail;
 
-        public const string Inbox = "Inbox";
-        public const string Sent = "Sent";
-        public const string Deleted = "Deleted";
-    }
+public class FolderParameters
+{
+    public const string FolderKey = "Folder";
+
+    public const string Inbox = nameof(Inbox);
+    public const string Sent = nameof(Sent);
+    public const string Deleted = nameof(Deleted);
 }

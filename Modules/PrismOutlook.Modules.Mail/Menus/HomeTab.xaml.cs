@@ -1,17 +1,9 @@
-﻿using Infragistics.Windows.Ribbon;
+﻿using Fluent;
 using PrismOutlook.Core;
 
-namespace PrismOutlook.Modules.Mail.Menus
+namespace PrismOutlook.Modules.Mail.Menus;
+
+public partial class HomeTab : RibbonTabItem, ISupportDataContext
 {
-    /// <summary>
-    /// Interaction logic for HomeTab.xaml
-    /// </summary>
-    public partial class HomeTab : RibbonTabItem, ISupportDataContext
-    {
-        public HomeTab()
-        {
-            InitializeComponent();
-            SetResourceReference(StyleProperty, typeof(RibbonTabItem));
-        }
-    }
+    public HomeTab() => InitializeComponent();
 }

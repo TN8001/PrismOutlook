@@ -1,7 +1,6 @@
-﻿namespace PrismOutlook.Core
+﻿namespace PrismOutlook.Core;
+
+public interface IOutlookBarGroup
 {
-    public interface IOutlookBarGroup
-    {
-        string DefaultNavigationPath { get; }
-    }
+    string DefaultNavigationPath { get; }
 }

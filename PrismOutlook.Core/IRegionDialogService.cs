@@ -1,10 +1,9 @@
-﻿using Prism.Services.Dialogs;
-using System;
+﻿using System;
+using Prism.Services.Dialogs;
 
-namespace PrismOutlook.Core
+namespace PrismOutlook.Core;
+
+public interface IRegionDialogService
 {
-    public interface IRegionDialogService
-    {
-        void Show(string name, IDialogParameters dialogParameters, Action<IDialogResult> callback);
-    }
+    void Show(string name, IDialogParameters dialogParameters, Action<IDialogResult> callback);
 }

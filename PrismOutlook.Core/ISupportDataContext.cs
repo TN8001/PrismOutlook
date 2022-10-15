@@ -1,7 +1,6 @@
-﻿namespace PrismOutlook.Core
+﻿namespace PrismOutlook.Core;
+
+public interface ISupportDataContext
 {
-    public interface ISupportDataContext
-    {
-        object DataContext { get; set; }
-    }
+    object DataContext { get; set; }
 }
